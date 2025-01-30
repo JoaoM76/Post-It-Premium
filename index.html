@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Post-it Clássico</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div class="controls">
+        <button id="add-note-btn">+ Novo</button>
+        <input type="text" id="search-input" placeholder="Buscar notas...">
+        <button id="settings-btn">⚙️</button>
+    </div>
+
+    <div id="settings-menu" class="hidden">
+        <h3>Configurações</h3>
+        <div class="color-picker">
+            <div class="color-option selected" data-color="#fff9c4" style="background-color: #fff9c4"></div>
+            <div class="color-option" data-color="#c4ffd4" style="background-color: #c4ffd4"></div>
+            <div class="color-option" data-color="#c4e4ff" style="background-color: #c4e4ff"></div>
+            <div class="color-option" data-color="#ffc4c4" style="background-color: #ffc4c4"></div>
+        </div>
+        <label>Categoria Padrão:
+            <select id="default-category">
+                <option value="geral">Geral</option>
+                <option value="trabalho">Trabalho</option>
+                <option value="pessoal">Pessoal</option>
+            </select>
+        </label>
+    </div>
+
+    <template id="note-template">
+        <div class="post-it">
+            <div class="post-it-header">
+                <span class="drag-handle">≡</span>
+                <div class="note-meta">
+                    <span class="note-date"></span>
+                    <select class="note-category">
+                        <option value="geral">Geral</option>
+                        <option value="trabalho">Trabalho</option>
+                        <option value="pessoal">Pessoal</option>
+                    </select>
+                </div>
+                <div class="note-controls">
+                    <input type="datetime-local" class="note-reminder" min="2023-01-01T00:00">
+                    <button class="delete-btn">×</button>
+                </div>
+            </div>
+            <textarea class="post-it-content" placeholder="Escreva sua nota..."></textarea>
+            <div class="resize-handle"></div>
+        </div>
+    </template>
+
+    <script src="js/index.js"></script>
+</body>
+</html>

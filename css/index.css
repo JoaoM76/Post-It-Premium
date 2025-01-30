@@ -1,0 +1,216 @@
+:root {
+    --default-color: #fff9c4; /* Amarelo clássico */
+    --background-color: #1a1a1a;
+    --text-color: #333;
+    --accent-color: #00d1d1;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    background-color: var(--background-color);
+    min-height: 100vh;
+    touch-action: none;
+    font-family: 'Segoe UI', sans-serif;
+    color: var(--text-color);
+}
+
+.controls {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    display: flex;
+    gap: 10px;
+    background: var(--background-color);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#add-note-btn, #settings-btn {
+    padding: 12px 20px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.2s;
+}
+
+#search-input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    width: 200px;
+    background: white;
+}
+
+#settings-menu {
+    position: fixed;
+    top: 60px;
+    left: 10px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.color-picker {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.color-option {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.color-option.selected {
+    border: 2px solid var(--accent-color);
+    transform: scale(1.1);
+}
+
+.post-it {
+    position: absolute;
+    width: 280px;
+    min-height: 220px;
+    background-color: var(--default-color);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.3s ease;
+    touch-action: none;
+    user-select: none;
+    color: #333;
+}
+
+.post-it.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.post-it.dragging {
+    transition: none;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+}
+
+.post-it-header {
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.drag-handle {
+    cursor: move;
+    font-size: 24px;
+    user-select: none;
+    padding: 8px;
+    margin: -8px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.note-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.8em;
+}
+
+.note-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.delete-btn {
+    background: #ff4444;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.resize-handle {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    cursor: nwse-resize;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.post-it-content {
+    width: 100%;
+    height: calc(100% - 60px);
+    padding: 15px;
+    border: none;
+    resize: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 16px;
+    color: #333;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.visual-alert {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 2000;
+    animation: slideIn 0.5s ease-out;
+    border-left: 5px solid var(--accent-color);
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+.alert-content h3 {
+    margin: 0 0 10px 0;
+    color: var(--accent-color);
+}
+
+.alert-content p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #333;
+}
+
+.hidden {
+    display: none !important;
+}
+
+input[type="datetime-local"], select {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 4px;
+    color: #333;
+}
